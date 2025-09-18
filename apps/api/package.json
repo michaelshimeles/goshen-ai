@@ -1,0 +1,15 @@
+{
+  "name": "api",
+  "type": "module",
+  "scripts": {
+    "start": "bun run main.ts",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@types/bun": "1",
+    "typescript": "5"
+  },
+  "dependencies": {
+    "elysia": "1"
+  }
+}
