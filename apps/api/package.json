@@ -2,7 +2,8 @@
   "name": "api",
   "type": "module",
   "scripts": {
-    "start": "bun run main.ts",
+    "dev": "bun run main.ts --turbopack",
+    "start": "bun run main.ts --turbopack",
     "typecheck": "tsc"
   },
   "devDependencies": {

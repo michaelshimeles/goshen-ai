@@ -1,10 +1,17 @@
 {
-    "name": "contracts",
+    "name": "@contracts",
     "version": "0.0.1",
     "private": true,
     "type": "module",
     "main": "models.ts",
     "dependencies": {
         "zod": "^3.23.0"
+    },
+    "devDependencies": {
+        "turbo": "latest"
+    },
+    "packageManager": "pnpm@9.0.0",
+    "exports": {
+        "./models": "./models.ts"
     }
 }

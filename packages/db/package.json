@@ -1,5 +1,5 @@
 {
-  "name": "db",
+  "name": "@db",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -9,6 +9,8 @@
     "@neondatabase/serverless": "^0.8.0"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.20.0"
-  }
+    "drizzle-kit": "^0.20.0",
+    "turbo": "latest"
+  },
+  "packageManager": "pnpm@9.0.0"
 }
