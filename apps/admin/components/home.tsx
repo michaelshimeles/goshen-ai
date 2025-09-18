@@ -7,7 +7,7 @@ import {
     CodeBlockGroup,
 } from "@/components/components/ui/code-block";
 import { Input } from "@/components/components/ui/input";
-import { api } from "convex/_generated/api";
+import { api } from "@/convex/_generated/api";
 import { Preloaded, useMutation, usePreloadedQuery } from "convex/react";
 import { Check, Copy } from "lucide-react";
 import { useState } from "react";
