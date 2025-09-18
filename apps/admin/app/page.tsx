@@ -38,7 +38,7 @@ export default function Home() {
     <div className="flex flex-col justify-center items-center w-full">
       <div className="flex flex-col gap-3 justify-start w-full p-12">
         <div className="space-y-1">
-          <p className="text-2xl font-medium">Goshen AI</p>
+          <p className="text-2xl font-medium">Goshen AI 🤖</p>
           <p>AI inference at a fraction of the cost</p>
         </div>
         <div className="flex justify-start items-center w-fit gap-2">
@@ -52,8 +52,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-3 w-fit mt-4">
-          <p>Generate an image/video using our API for a fraction of the cost fal.ai and replicate charge</p>
+        <div className="flex flex-col gap-3 max-w-fit mt-4">
+          <p className="text-sm text-gray-700">Generate an image/video using our API for a fraction of the cost fal.ai and replicate charge</p>
           <CodeBlock>
             <CodeBlockGroup className="border-border border-b py-2 pr-2 pl-4">
               <div className="flex items-center gap-2">
