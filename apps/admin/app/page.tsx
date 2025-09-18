@@ -42,7 +42,7 @@ export default function Home() {
           <p>AI inference at a fraction of the cost</p>
         </div>
         <div className="flex justify-start items-center w-fit gap-2">
-          <div>
+          <div className="flex flex-col gap-1">
             <label className="text-xs text-gray-400">Sign up for our waitlist</label>
             <div className="flex gap-2 justify-center items-center">
               <Input placeholder="michael@goshenlabs.ai" />
@@ -53,7 +53,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col gap-3 w-fit mt-4">
-          <p>Generate an image/video using our API for a fraction of the cost</p>
+          <p>Generate an image/video using our API for a fraction of the cost fal.ai and replicate charge</p>
           <CodeBlock>
             <CodeBlockGroup className="border-border border-b py-2 pr-2 pl-4">
               <div className="flex items-center gap-2">
