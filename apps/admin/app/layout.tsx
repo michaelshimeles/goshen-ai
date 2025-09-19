@@ -1,7 +1,8 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { ConvexClientProvider } from "../components/components/providers/convex-provider";
 import "./globals.css";
-import { ConvexClientProvider } from "../components/components/providers/convex-provider"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ConvexClientProvider>
           {children}
+          <Analytics />
         </ConvexClientProvider>
       </body>
     </html>
