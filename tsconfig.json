@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@db/*": [
+        "packages/db/*"
+      ],
+      "@contracts/*": [
+        "packages/contracts/*"
+      ]
+    }
+  },
+  "extends": "@workspace/typescript-config/base.json"
+}
