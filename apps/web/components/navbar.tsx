@@ -10,7 +10,9 @@ export default async function Navbar() {
 
     return (
         <div className="flex justify-between items-center w-full mt-4">
-            <h1 className="text-xl font-semibold">Goshen AI</h1>
+            <Link href="/">
+                <h1 className="text-xl font-semibold">Goshen AI</h1>
+            </Link>
             {!user ?
                 <Link href="/login">
                     <Button size="sm" variant="outline">Login</Button>

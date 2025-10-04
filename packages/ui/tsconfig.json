@@ -6,6 +6,6 @@
       "@workspace/ui/*": ["./src/*"]
     }
   },
-  "include": ["."],
+  "include": [".", "../../apps/web/components/code-block.tsx"],
   "exclude": ["node_modules", "dist"]
 }

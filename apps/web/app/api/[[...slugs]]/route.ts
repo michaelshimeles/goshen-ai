@@ -1,10 +1,11 @@
 import { cors, HTTPMethod } from "@elysiajs/cors";
 import { swagger } from "@elysiajs/swagger";
-import { drizzle } from "drizzle-orm/node-postgres";
-import { Elysia } from 'elysia';
-import { Pool } from "pg";
 import { WorkOS } from '@workos-inc/node';
-import { users } from "@workspace/db/schema";
+import { Pool } from "pg";
+import { authEvents, users } from "@workspace/db/schema";
+import { Elysia } from 'elysia';
+import { drizzle } from "drizzle-orm/node-postgres";
+import { eq, desc, and } from "drizzle-orm";
 
 const workos = new WorkOS(process.env.WORKOS_API_KEY);
 
@@ -41,7 +42,6 @@ const app = new Elysia({ prefix: "/api" })
         const payload = body
         const sigHeader = headers['workos-signature']
 
-        console.log('payload', payload)
         const webhook = await workos.webhooks.constructEvent({
             payload: payload,
             sigHeader: sigHeader!,
@@ -49,7 +49,7 @@ const app = new Elysia({ prefix: "/api" })
         });
 
 
-        const { data } = webhook;
+        const { id: eventId, createdAt, event: eventType, data } = webhook;
         // NOTE: data keys are camelCase
         const { type, status, email, userId, ipAddress, userAgent } = data as {
             type: string;
@@ -61,21 +61,32 @@ const app = new Elysia({ prefix: "/api" })
         };
 
         // Idempotent insert (skip if we've seen this event before)
-        await db
-            .insert(users)
-            .values({
-                type,
-                status,
+        // 1) log the event idempotently
+        await db.insert(authEvents).values({
+            eventId, eventType, type, status, email, userId,
+            ipAddress, userAgent, occurredAt: new Date(createdAt), webhook: webhook
+        }).onConflictDoNothing({ target: authEvents.eventId });
+
+        // 2) only upsert profile on success
+        if (status === 'succeeded') {
+            await db.insert(users).values({
+                userId: userId,
                 email,
-                userId,
-                ipAddress,
-                userAgent,
             })
+        }
 
 
         return {
-            status: 200
+            status: 200,
         }
+    })
+    .post('/create/keys', async ({ }) => {
+
+    })
+    .get('/create/keys/list', async ({ }) => {
+
+    })
+    .delete('/create/keys/:id', async ({ }) => {
 
     })
 

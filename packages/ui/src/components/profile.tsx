@@ -8,6 +8,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@workspace/ui/components/dropdown-menu";
+import Link from "next/link";
 
 type UserProfile = {
     signOut: () => void
@@ -27,7 +28,11 @@ export default function Profile({ signOut, firstName, profilePictureUrl }: UserP
             <DropdownMenuContent>
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>
+                    <Link href="/profile">
+                        Profile
+                    </Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem
                     onClick={async () => {
                         await signOut();

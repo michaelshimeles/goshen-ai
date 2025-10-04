@@ -8,6 +8,27 @@
       "when": 1759560832907,
       "tag": "0000_next_nextwave",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1759562621220,
+      "tag": "0001_futuristic_thena",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1759562633131,
+      "tag": "0002_spicy_lyja",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1759563774337,
+      "tag": "0003_fast_clea",
+      "breakpoints": true
     }
   ]
 }

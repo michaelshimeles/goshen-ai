@@ -1,7 +1,9 @@
 import { PageHeader, PageHeaderHeading, PageHeaderDescription, PageActions } from "@/components/header";
+import { Models } from "@/components/models";
 import Navbar from "@/components/navbar";
 import { getSignUpUrl, withAuth } from "@workos-inc/authkit-nextjs";
 import { Button } from "@workspace/ui/components/button";
+import { Input } from "@workspace/ui/components/input";
 import Link from "next/link";
 
 export default async function Dashboard() {
@@ -28,16 +30,20 @@ export default async function Dashboard() {
                 <Navbar />
                 <div className="flex flex-col gap-3 justify-start w-full">
                     <PageHeader>
-                        <PageHeaderHeading>Dashboard</PageHeaderHeading>
-                        <PageHeaderDescription>Generate an API key.</PageHeaderDescription>
+                        <PageHeaderHeading>Generate with AI</PageHeaderHeading>
+                        <PageHeaderDescription>All you need is one API key to get access to tons of video and image models at a fraction of the cost.</PageHeaderDescription>
                         <PageActions>
-                            <Button asChild size="sm" className="rounded-md">
-                                <Link href="/" prefetch={true}>
-                                    Get Started
-                                </Link>
+                            <div>
+                                <Input />
+                            </div>
+                            <Button variant="outline" size="sm" className="rounded-md">
+                                Generate
                             </Button>
                         </PageActions>
                     </PageHeader>
+                </div>
+                <div className="flex items-center justify-start w-full gap-3">
+                    {[0, 1, 2, 3].map((index) => (<Link href="/dashboard/model" key={index}><Models /></Link>))}
                 </div>
             </div>
         </div>
