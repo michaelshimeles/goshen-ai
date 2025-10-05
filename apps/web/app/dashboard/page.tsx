@@ -1,28 +1,32 @@
-import { PageHeader, PageHeaderHeading, PageHeaderDescription, PageActions } from "@/components/header";
+import { PageActions, PageHeader, PageHeaderDescription, PageHeaderHeading } from "@/components/header";
 import { Models } from "@/components/models";
 import Navbar from "@/components/navbar";
-import { getSignUpUrl, withAuth } from "@workos-inc/authkit-nextjs";
-import { Button } from "@workspace/ui/components/button";
+import { createServerClient } from "@/lib/api";
+import { withAuth } from "@workos-inc/authkit-nextjs";
 import { Input } from "@workspace/ui/components/input";
+import { cookies } from "next/headers";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import GenerateApiButton from "./model/[id]/_components/generate-button";
 
 export default async function Dashboard() {
 
-    // Retrieves the user from the session or returns `null` if no user is signed in
     const { user } = await withAuth();
 
-    // Get the URL to redirect the user to AuthKit to sign up
-    const signUpUrl = await getSignUpUrl();
-
     if (!user) {
-        return (
-            <>
-                <a href="/login">Sign in</a>
-                <Link href={signUpUrl}>Sign up</Link>
-            </>
-        );
+        redirect("/")
     }
 
+    const cookieStore = await cookies();
+    const serverClient = createServerClient(cookieStore);
+
+    const { data, error } = await serverClient.api.admin.keys.get({
+        query: {
+            userId: user.id
+        }
+    })
+
+    const apiKeys = data?.[0]?.last4 || []
 
     return (
         <div className="flex flex-col justify-center items-center w-full">
@@ -34,16 +38,17 @@ export default async function Dashboard() {
                         <PageHeaderDescription>All you need is one API key to get access to tons of video and image models at a fraction of the cost.</PageHeaderDescription>
                         <PageActions>
                             <div>
-                                <Input />
+                                <Input
+                                    defaultValue={"*********" + apiKeys}
+                                    readOnly
+                                />
                             </div>
-                            <Button variant="outline" size="sm" className="rounded-md">
-                                Generate
-                            </Button>
+                            <GenerateApiButton userId={user.id} />
                         </PageActions>
                     </PageHeader>
                 </div>
                 <div className="flex items-center justify-start w-full gap-3">
-                    {[0, 1, 2, 3].map((index) => (<Link href="/dashboard/model" key={index}><Models /></Link>))}
+                    {[0].map((index) => (<Models key={index} />))}
                 </div>
             </div>
         </div>

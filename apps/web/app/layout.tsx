@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google"
 import { AuthKitProvider } from '@workos-inc/authkit-nextjs/components';
+import { Toaster } from "@workspace/ui/components/sonner"
 
 import "@workspace/ui/globals.css"
 import { Providers } from "@/components/providers"
@@ -25,7 +26,10 @@ export default function RootLayout({
         className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased `}
       >
         <Providers>
-           <AuthKitProvider>{children}</AuthKitProvider>
+          <AuthKitProvider>
+            {children}
+            <Toaster />
+          </AuthKitProvider>
         </Providers>
       </body>
     </html>

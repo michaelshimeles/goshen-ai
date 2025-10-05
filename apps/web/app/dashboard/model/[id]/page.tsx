@@ -1,12 +1,5 @@
-import {
-    CodeBlock,
-    CodeBlockCode,
-    CodeBlockGroup,
-} from "@/components/code-block";
 import { PageHeader, PageHeaderDescription, PageHeaderHeading } from "@/components/header";
 import Navbar from "@/components/navbar";
-import { Button } from "@workspace/ui/components/button";
-import { Check, Copy } from "lucide-react";
 import Code from "./_components/code";
 
 export default function Dashboard() {
