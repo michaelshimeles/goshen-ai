@@ -1,6 +1,6 @@
 import { signOut, withAuth } from "@workos-inc/authkit-nextjs";
 import { Button } from "@workspace/ui/components/button";
-import Profile from "@workspace/ui/components/profile";
+import Profile from "@/components/profile";
 import Link from "next/link";
 
 

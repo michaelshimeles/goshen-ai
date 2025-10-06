@@ -1,3 +1,4 @@
+import { workos } from "@/lib/workos";
 import { authEvents, users } from "@workspace/db/schema";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Elysia } from 'elysia';
